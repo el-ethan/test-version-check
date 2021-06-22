@@ -1,0 +1,21 @@
+name: Create release branch
+on:
+  push:
+    branches:
+    - develop
+jobs:
+  versioning:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if version has been updated
+        id: check-version
+        uses: EndBug/version-check@v1
+        with:
+          diff-search: true
+
+      - name: Create release branch from version number
+        if: steps.check-version.outputs.changed == 'true'
+        uses: peterjgrainger/action-create-branch@v2.0.1
+        with:
+          branch: 'release/${{ steps.check-version.outputs.version }}'
+
