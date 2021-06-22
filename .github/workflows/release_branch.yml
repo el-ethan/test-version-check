@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Check if version has been updated
         id: check-version
-        uses: EndBug/version-check@v1
+        uses: EndBug/version-check@v2.0.1
         with:
           diff-search: true
 
